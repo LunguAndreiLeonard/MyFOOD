@@ -10,14 +10,18 @@ const SignUpScreen = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordRepeat, setPasswordRepeat] = useState('');
-
+  const navigation = useNavigation();
 
 
   const onRegisterPressed = () => {
     console.warn('Register');
+
+    navigation.navigate('ConfirmEmailScreen');
   }
   const onSignInPressed = () => {
     console.warn('Sign in page');
+
+    navigation.navigate('SignInScreen');
   }
   return (
     <ScrollView>
@@ -47,9 +51,6 @@ const SignUpScreen = () => {
     <SocialSignInButtons />
     
     <CustomButton text="Sign in page" onPress={onSignInPressed} type="TERTIARY" />
-    <CustomButton text="Sign in page" onPress={onSignInPressed} type="TERTIARY" />
-    <CustomButton text="Sign in page" onPress={onSignInPressed} type="TERTIARY" />
-
     </View>
     </ScrollView>
   );

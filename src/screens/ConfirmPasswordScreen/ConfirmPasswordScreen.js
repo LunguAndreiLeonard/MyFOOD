@@ -7,7 +7,7 @@ const ConfirmPasswordScreen = () => {
   
   const [code, setCode] = useState('');
   const [newPassword, setNewPassword] = useState('');
-
+  const navigation = useNavigation();
 
 
 
@@ -17,6 +17,8 @@ const ConfirmPasswordScreen = () => {
  
   const onSignInPressed = () => {
     console.warn('Sign in page');
+
+    navigation.navigate('SignInScreen');
   }
   return (
     <ScrollView>

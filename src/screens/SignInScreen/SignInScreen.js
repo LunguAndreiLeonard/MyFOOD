@@ -4,6 +4,7 @@ import Logo from '../../../assets/images/Logo.jpg';
 import CustomInput from '../../components/CustomInputs/CustomInput';
 import CustomButton from '../../components/CustomButton';
 import SocialSignInButtons from '../../components/SocialSignInButtons/SocialSignInButtons';
+import { useNavigation } from '@react-navigation/native';
 
 const SignInScreen = () => {
   
@@ -11,16 +12,23 @@ const SignInScreen = () => {
   const [password, setPassword] = useState('');
 
   const {height} = useWindowDimensions();
+  const navigation = useNavigation();
 
   const onSignInPressed = () => {
     console.warn('Sign in');
+
+    navigation.navigate('HomeScreen');
   }
   const onForgotPasswordPressed = () => {
     console.warn('Forgot Password');
+
+    navigation.navigate('ResetPasswordScreen');
   }
   
   const onSignUpPressed = () => {
     console.warn('Sign up');
+
+    navigation.navigate('SignUp');
   }
   return (
     <ScrollView>

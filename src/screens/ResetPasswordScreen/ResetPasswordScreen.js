@@ -6,7 +6,7 @@ import CustomButton from '../../components/CustomButton';
 const ResetPasswordScreen = () => {
   
   const [username, setUsername] = useState('');
-
+  const navigation = useNavigation();
 
 
 
@@ -16,6 +16,8 @@ const ResetPasswordScreen = () => {
  
   const onSignInPressed = () => {
     console.warn('Sign in page');
+
+    navigation.navigate('SignInScreen');
   }
   return (
     <ScrollView>

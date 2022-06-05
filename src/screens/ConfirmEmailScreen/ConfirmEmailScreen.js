@@ -2,12 +2,11 @@ import { View, Text, StyleSheet, useWindowDimensions, ScrollView } from 'react-n
 import React, {useState} from 'react';
 import CustomInput from '../../components/CustomInputs';
 import CustomButton from '../../components/CustomButton';
-import SocialSignInButtons from '../../components/SocialSignInButtons';
 
 const ConfirmEmailScreen = () => {
   
   const [code, setCode] = useState('');
-
+  const navigation = useNavigation();
 
 
 
@@ -19,6 +18,8 @@ const ConfirmEmailScreen = () => {
   }
   const onSignInPressed = () => {
     console.warn('Sign in page');
+
+    navigation.navigate('SignInScreen');
   }
   return (
     <ScrollView>
