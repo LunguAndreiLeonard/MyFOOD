@@ -15,18 +15,15 @@ const SignInScreen = () => {
   const navigation = useNavigation();
 
   const onSignInPressed = () => {
-    console.warn('Sign in');
-
+    
     navigation.navigate('HomeScreen');
   }
   const onForgotPasswordPressed = () => {
-    console.warn('Forgot Password');
 
-    navigation.navigate('ResetPasswordScreen');
+    navigation.navigate('ResetPassword');
   }
   
   const onSignUpPressed = () => {
-    console.warn('Sign up');
 
     navigation.navigate('SignUp');
   }

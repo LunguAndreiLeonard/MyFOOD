@@ -19,9 +19,9 @@ function Navigation() {
       
       <Stack.Screen name="SignIn" component={SignInScreen} />
       <Stack.Screen name="SignUp" component={SignUpScreen} />
-      <Stack.Screen name="ConfirmEmailScreen" component={ConfirmEmailScreen} />
-      <Stack.Screen name="ConfirmPasswordScreen" component={ConfirmPasswordScreen} />
-      <Stack.Screen name="ResetPasswordScreen" component={ResetPasswordScreen} />
+      <Stack.Screen name="ConfirmEmail" component={ConfirmEmailScreen} />
+      <Stack.Screen name="ConfirmPassword" component={ConfirmPasswordScreen} />
+      <Stack.Screen name="ResetPassword" component={ResetPasswordScreen} />
       <Stack.Screen name="HomeScreen" component={HomeScreen} />
 
     </Stack.Navigator>

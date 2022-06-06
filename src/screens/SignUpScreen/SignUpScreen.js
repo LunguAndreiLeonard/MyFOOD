@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 import CustomInput from '../../components/CustomInputs';
 import CustomButton from '../../components/CustomButton';
 import SocialSignInButtons from '../../components/SocialSignInButtons';
+import { useNavigation } from '@react-navigation/native';
 
 const SignUpScreen = () => {
   
@@ -10,19 +11,18 @@ const SignUpScreen = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordRepeat, setPasswordRepeat] = useState('');
+
   const navigation = useNavigation();
 
 
   const onRegisterPressed = () => {
-    console.warn('Register');
 
-    navigation.navigate('ConfirmEmailScreen');
-  }
+    navigation.navigate('ConfirmEmail');
+  };
   const onSignInPressed = () => {
-    console.warn('Sign in page');
 
-    navigation.navigate('SignInScreen');
-  }
+    navigation.navigate('SignIn');
+  };
   return (
     <ScrollView>
     <View style={styles.root}>
