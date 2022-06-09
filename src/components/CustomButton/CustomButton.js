@@ -35,6 +35,41 @@ const styles = StyleSheet.create({
         color: 'white',
     },
     text_TERTIARY: {},
+    container_SECONDARY: {
+        backgroundColor: 'purple',
+        borderRadius: 180,
+        paddingBottom: 30,
+        paddingHorizontal: 30,
+        width: 'auto',
+        textAlign: 'center',
+        alignItems: 'center',
+        fontWeight: 'bold',
+        maxWidth: 15,
+        maxHeight: 15,
+        position: 'absolute',
+        right: 15,
+        bottom: 50,
+        opacity: '50%',
+    },
+    container_BACK: {
+        backgroundColor: 'purple',
+        borderRadius: 180,
+        paddingBottom: 30,
+        paddingHorizontal: 30,
+        width: 'auto',
+        textAlign: 'center',
+        alignItems: 'center',
+        fontWeight: 'bold',
+        maxWidth: 15,
+        maxHeight: 15,
+        fontSize: 30,
+        position: 'absolute',
+        right: 690,
+        bottom: 50,
+        opacity: '50%',
+    }
+
+
 });
 
 export default CustomButton;
