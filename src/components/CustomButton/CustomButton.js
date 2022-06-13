@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
 
     container_PRIMARY: {
         backgroundColor: 'orange',
-        width:'40',
+        width: 300,
     },
     container_TERTIARY: {},
     text: {

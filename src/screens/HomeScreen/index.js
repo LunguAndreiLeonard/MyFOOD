@@ -40,10 +40,14 @@ const HomeScreen = () => {
     }
 
     useEffect(() => {
+        //AsyncStorage.clear();
         findNotes();
         findGreet();
     }, []);
-
+    
+    const handleModalClose = () => {
+        Keyboard.dismiss;
+    };
    
     
     const openNote = (note) => {
@@ -53,7 +57,7 @@ const HomeScreen = () => {
     return (
         <>
         <StatusBar barStyle='dark-content' backgroundColor={colors.DARK}/>
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <TouchableWithoutFeedback onPress={handleModalClose}>
 
         
         <View style={styles.container}>
@@ -115,7 +119,7 @@ const styles = StyleSheet.create({
         color: 'white',
         textTransform: 'uppercase',
         fontWeight: 'bold',
-        opacity: 0.2,
+        opacity: '20%',
     },
     emptyHeaderContainer: {
         flex: 1,
