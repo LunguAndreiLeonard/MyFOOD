@@ -119,7 +119,6 @@ const styles = StyleSheet.create({
         color: 'white',
         textTransform: 'uppercase',
         fontWeight: 'bold',
-        opacity: '20%',
     },
     emptyHeaderContainer: {
         flex: 1,
