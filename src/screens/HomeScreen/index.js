@@ -1,4 +1,4 @@
-import { FlatList, StatusBar, StyleSheet, Text, TextInput, TouchableWithoutFeedback, View } from 'react-native'
+import { FlatList, StatusBar, StyleSheet, Text, TextInput, TouchableWithoutFeedback, View, Button,Image, Keyboard } from 'react-native'
 import React, {useEffect, useState} from 'react'
 import colors from '../../misc/colors';
 import SearchBar from '../../components/SearchBar/SearchBar';
@@ -8,21 +8,18 @@ import NoteFiles from '../../components/NoteFiles/NoteFiles';
 import { AsyncStorage } from '@aws-amplify/core';
 import Note from '../../components/NoteFiles/Note';
 import {useNavigation} from '@react-navigation/core';
+import { useNotes } from '../../context/NoteProvider';
 
- 
+
 const HomeScreen = () => {
     const [greet, setGreet, index] = useState('Evening');
     const [modalVisible, setModalVisible] = useState(false)
     const navigation = useNavigation();
+    const {notes, setNotes} = useNotes();
 
-    const [notes, setNotes] = useState([]);
-    const findNotes = async () => {
-        const result = await AsyncStorage.getItem('notes');
-        if(result !== null) setNotes(JSON.parse(result));
-    }
 
-    const handleOnSubmit = async (title, description) => {
-        const note = {id: Date.now(), title, description, time: Date.now()};
+    const handleOnSubmit = async (title, description, image) => {
+        const note = {id: Date.now(), title, description,image, time: Date.now()};
         const updatedNotes = [...notes, note];
         setNotes(updatedNotes)
         await AsyncStorage.setItem('notes', JSON.stringify(updatedNotes))
@@ -41,14 +38,13 @@ const HomeScreen = () => {
 
     useEffect(() => {
         //AsyncStorage.clear();
-        findNotes();
         findGreet();
     }, []);
     
     const handleModalClose = () => {
         Keyboard.dismiss;
     };
-   
+
     
     const openNote = (note) => {
         navigation.navigate('NoteDetails', {note});
@@ -76,10 +72,11 @@ const HomeScreen = () => {
             
         </View>
         </TouchableWithoutFeedback>
+
         <CustomButton
-          text="+"
-          onPress={() => setModalVisible(true)}
-          type="SECONDARY"
+        text="ADD"
+        onPress={() => setModalVisible(true)}
+        type="SECONDARY"
         />
         <Text
                 onPress={signOut}
@@ -125,7 +122,9 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         color: 'white',
+        opacity: .5,
     },
+    
 
 })
 export default HomeScreen;

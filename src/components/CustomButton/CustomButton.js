@@ -36,38 +36,36 @@ const styles = StyleSheet.create({
     },
     text_TERTIARY: {},
     container_SECONDARY: {
-        backgroundColor: 'purple',
+        backgroundColor: 'red',
         borderRadius: 180,
-        paddingBottom: 30,
-        paddingHorizontal: 30,
-        width: 'auto',
-        textAlign: 'center',
-        alignItems: 'center',
-        fontWeight: 'bold',
-        maxWidth: 15,
-        maxHeight: 15,
+        width: 60,
+        left: 330,
+        bottom: 20,
         position: 'absolute',
-        right: 15,
-        bottom: 50,
-        opacity: '50%',
+        
+        
     },
+    text_SECONDARY: {},
     container_BACK: {
+        backgroundColor: 'red',
+        borderRadius: 180,
+        width: 60,
+        left: 0,
+        position: 'absolute',
+        bottom: 20,
+        
+    },
+    container_CAMERA: {
         backgroundColor: 'purple',
         borderRadius: 180,
-        paddingBottom: 30,
-        paddingHorizontal: 30,
-        width: 'auto',
-        textAlign: 'center',
-        alignItems: 'center',
-        fontWeight: 'bold',
-        maxWidth: 15,
-        maxHeight: 15,
-        fontSize: 30,
+        width: 100,
+        left: 150,
+        bottom: 20,
         position: 'absolute',
-        right: 690,
-        bottom: 50,
-        opacity: '50%',
-    }
+        
+        
+    },
+
 
 
 });

@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {View, ActivityIndicator} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {StatusBar} from 'react-native';
 
 
 import SignInScreen from '../screens/SignInScreen';
@@ -12,6 +13,7 @@ import ConfirmPasswordScreen from '../screens/ConfirmPasswordScreen';
 import HomeScreen from '../screens/HomeScreen';
 import {Auth, Hub} from 'aws-amplify';
 import NoteDetails from '../components/NoteFiles/NoteDetails';
+import NoteProvider from '../context/NoteProvider';
 
 const Stack = createNativeStackNavigator();
 
@@ -53,9 +55,11 @@ const Navigation = () => {
   
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{headerShown: false,contentStyle:{
+      <StatusBar hidden />
+      <NoteProvider>
+      <Stack.Navigator screenOptions={{headerShown: false, headerMode: 'none', contentStyle:{
        backgroundColor:'#180526'}}}>
-         
+
         {user ? (
           <>
           <Stack.Screen name="Home" component={HomeScreen} />
@@ -71,6 +75,7 @@ const Navigation = () => {
           </>
         )}
       </Stack.Navigator>
+      </NoteProvider>
     </NavigationContainer>
   );
 };

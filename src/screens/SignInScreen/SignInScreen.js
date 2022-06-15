@@ -186,6 +186,9 @@ const styles = StyleSheet.create({
     padding: 20,
     flex: 1,
     backgroundColor: '#180526',
+  
+
+  
     
   },
   logo: {

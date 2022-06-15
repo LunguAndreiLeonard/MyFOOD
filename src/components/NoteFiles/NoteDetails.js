@@ -1,6 +1,11 @@
-import { View, Text, StyleSheet, ScrollView ,Alert} from 'react-native'
-import React from 'react'
+import { View, Text, StyleSheet, ScrollView , Alert, Button, Keyboard, TouchableHighlight,Image, ToastAndroid} from 'react-native'
+import React, {useState} from 'react'
 import CustomButton from '../CustomButton';
+import { AsyncStorage } from '@aws-amplify/core';
+import NoteProvider, { useNotes } from '../../context/NoteProvider';
+import NoteFiles from './NoteFiles';
+import Note from './Note';
+
 
 const formatDate = ms => {
     const date = new Date(ms)
@@ -15,42 +20,86 @@ const formatDate = ms => {
 };
 
 
-const NoteDetails = (props) => {
-    const { note } = props.route.params
+const NoteDetails = props => {
+    const [note, setNote] = useState(props.route.params.note)
+    const {setNotes} = useNotes();
+    const [showNote, setShowNote] = useState(false);
+    const [isEdit, setIsEdit] = useState(false);
 
-    const displayDeleteAlert = () => {
-        Alert.alert('Confirm!', [
-            {
-                text: 'Delete',
-                onPress: () => console.log('delete')
-            },
-            {
-                text: `Don't delete`,
-                onPress: () => console.log('notnk')
+    const deleteNote = async () => {
+        const result = await AsyncStorage.getItem('notes')
+        let notes = []
+        if( result !== null) notes = JSON.parse(result)
 
+        const newNotes = notes.filter(n => n.id !== note.id)
+        setNotes(newNotes);
+        await AsyncStorage.setItem('notes', JSON.stringify(newNotes))
+        props.navigation.goBack()
+    }
+    const displayDeleteAlert = () => 
+    Alert.alert('Delete note file...', 'Are you sure?', [
+        { text: "Delete it!", onPress: deleteNote},
+        { text: "Don't delete my note!", onPress: () => console.log('no thanks'),}
+        ],
+        { cancelable: true });
+
+        
+
+        const handleUpdate = async (title, description,image, time) => {
+            await AsyncStorage.getItem('notes')
+            let notes = [];
+            if(result !== null) notes =  JSON.parse(result)
+
+            const newNotes = notes.filter(n => {
+                if(n.id == note.id) {
+                    n.title = title
+                    n.description = description
+                    n.image = image
+                    n.isUpdated = true
+                    n.time = time
+
+                    setNote(n);
+
+                }
+                return n ;
+            })
+            setNotes(newNotes);
+            await AsyncStorage.setItem('notes', JSON.stringify(newNotes))
         }
-    ], {
-        cancelable: true,
-    });
-    };
+        const handleOnClose = () => setShowNote(false)
+
+        const openEditNote = () => {
+            setIsEdit(true);
+            setShowNote(true);
+        }
 
     return (
     <>
     <ScrollView contentContainerStyle = {styles.container}>
-      <Text style={styles.time}>{`Created At ${formatDate(note.time)}`}</Text>  
-      <Text style={styles.title}>{note.title}</Text>
-      <Text style={styles.description}>{note.description}</Text>
+    <Text style={styles.time}>{note.isUpdated
+    ? `Updated At ${formatDate(note.time)}` 
+    : `Create At ${formatDate(note.time)}`}</Text>  
+    <Text style={styles.title}>{note.title}</Text>
+    <Text style={styles.description}>{note.description}</Text>
+    <Image source={note.image} />
+
     </ScrollView>
-    <View style={styles.btnContainer}>
+    <View>
     <CustomButton
-          text="DEL"
-          onPress={displayDeleteAlert}
-          type="BACK"
+        text="DEL"
+        onPress={displayDeleteAlert}
+        type="SECONDARY"
         />
-    
+        <CustomButton
+        text="EDIT"
+        onPress={openEditNote}
+        type="BACK"
+        />
+
     </View>
+    <NoteFiles isEdit={isEdit} note = {note} onClose={handleOnClose} onSubmit= {handleUpdate} visible = {showNote} />
     </>
-  )
+)
 }
 
 const styles = StyleSheet.create({
@@ -63,17 +112,18 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 30,
         fontWeight: 'bold',
-        padding: 20,
+        padding: 30,
+        textAlign: 'right',
         borderBottomColor: 'yellow',
         borderBottomWidth: 2,
         borderBottomLeftRadius: 40,
-        borderStyle: 'dashed'
+        
         
     },
     description: {
         color: 'white',
         fontSize: 15,
-        padding: 10,
+        padding: 20,
         
         
     },
@@ -83,11 +133,10 @@ const styles = StyleSheet.create({
         paddingRight:10,
         textAlign: 'right',
     },
-    btnContainer: {
-        position: 'absolute',
-        right: 15,
-        bottom: 50,
-        flex: 1,
+    buttons: {
+        borderRadius: 0.5,
+        right: 50,
+        size: '30%',
     }
 
 })

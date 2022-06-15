@@ -1,13 +1,17 @@
-import { View, Text, StyleSheet, Dimensions, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, Dimensions, TouchableOpacity, Image } from 'react-native'
 import React from 'react'
 
+
 const Note = ({item, onPress}) => {
-    const {title, description} = item;
+    const {title, description, image} = item;
+    
   return (  
     
     <TouchableOpacity onPress={onPress} style = {styles.container}>
         <Text  style={styles.title} numberOfLines={2}>{title}</Text>
         <Text style={styles.description} numberOfLines={5}>{description}</Text>
+        <Image source={{image}}/>
+
     </TouchableOpacity>
   )
 }
