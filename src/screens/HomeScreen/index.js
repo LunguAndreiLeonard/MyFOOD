@@ -9,6 +9,7 @@ import { AsyncStorage } from '@aws-amplify/core';
 import Note from '../../components/NoteFiles/Note';
 import {useNavigation} from '@react-navigation/core';
 import { useNotes } from '../../context/NoteProvider';
+import { BorderOutlined } from '@ant-design/icons';
 
 
 const HomeScreen = () => {
@@ -101,9 +102,11 @@ const HomeScreen = () => {
 
 const styles = StyleSheet.create({
     header: {
-        fontSize: 20,
+        fontSize: 15,
         fontWeight: 'bold',
         color: 'white',
+
+        
     },
     container: {
         paddingHorizontal: 20,

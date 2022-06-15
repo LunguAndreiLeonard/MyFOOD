@@ -1,10 +1,12 @@
-import { View, Text, StyleSheet, ScrollView , Alert, Button, Keyboard, TouchableHighlight,Image, ToastAndroid} from 'react-native'
+import { View, Text, StyleSheet, ScrollView ,Avatar, Alert, Button, Keyboard,Image, TouchableHighlight,ImageBackground, ToastAndroid} from 'react-native'
 import React, {useState} from 'react'
 import CustomButton from '../CustomButton';
 import { AsyncStorage } from '@aws-amplify/core';
 import NoteProvider, { useNotes } from '../../context/NoteProvider';
 import NoteFiles from './NoteFiles';
 import Note from './Note';
+
+
 
 
 const formatDate = ms => {
@@ -25,6 +27,7 @@ const NoteDetails = props => {
     const {setNotes} = useNotes();
     const [showNote, setShowNote] = useState(false);
     const [isEdit, setIsEdit] = useState(false);
+
 
     const deleteNote = async () => {
         const result = await AsyncStorage.getItem('notes')
@@ -61,7 +64,7 @@ const NoteDetails = props => {
                     setNote(n);
 
                 }
-                return n ;
+                return n;
             })
             setNotes(newNotes);
             await AsyncStorage.setItem('notes', JSON.stringify(newNotes))
@@ -81,8 +84,21 @@ const NoteDetails = props => {
     : `Create At ${formatDate(note.time)}`}</Text>  
     <Text style={styles.title}>{note.title}</Text>
     <Text style={styles.description}>{note.description}</Text>
-    <Image source={note.image} />
-
+    <ImageBackground
+                source={{
+                uri: note.image,
+                }}
+                style={{height: 100, width: 100}}
+                imageStyle={{borderRadius: 15, borderWidth: 1, borderColor: 'yellow'}}>
+                <View
+                style={{
+                    flex: 1,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                }}>
+                
+                </View>
+        </ImageBackground>
     </ScrollView>
     <View>
     <CustomButton
@@ -122,7 +138,7 @@ const styles = StyleSheet.create({
     },
     description: {
         color: 'white',
-        fontSize: 15,
+        fontSize: 20,
         padding: 20,
         
         

@@ -58,7 +58,7 @@ const Navigation = () => {
       <StatusBar hidden />
       <NoteProvider>
       <Stack.Navigator screenOptions={{headerShown: false, headerMode: 'none', contentStyle:{
-       backgroundColor:'#180526'}}}>
+      backgroundColor:'#180526'}}}>
 
         {user ? (
           <>

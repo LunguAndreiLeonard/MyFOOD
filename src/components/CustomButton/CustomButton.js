@@ -56,12 +56,15 @@ const styles = StyleSheet.create({
         
     },
     container_CAMERA: {
-        backgroundColor: 'purple',
+        backgroundColor: '#180529',
         borderRadius: 180,
         width: 100,
         left: 150,
         bottom: 20,
+        borderColor: 'yellow',
+        borderWidth: 1,
         position: 'absolute',
+        fontWeight: 'bold',
         
         
     },

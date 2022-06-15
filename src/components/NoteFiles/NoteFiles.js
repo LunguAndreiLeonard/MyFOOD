@@ -22,7 +22,7 @@ useEffect(() => {
     const handleOnChangeText = (text, valueFor) => {
         if(valueFor === 'title') setTitle(text);
         if(valueFor === 'description') setDescription(text);
-        if(valueFor === 'image') setImage(image);
+        if(valueFor === 'image') setImage(text);
     };
 
 
