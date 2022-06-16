@@ -128,7 +128,7 @@ const ConfirmEmailScreen = () => {
         <CustomButton
           text="Resend code"
           onPress={onResendPress}
-          type="SECONDARY"
+          type="RESEND"
         />
 
         <CustomButton
@@ -144,7 +144,9 @@ const ConfirmEmailScreen = () => {
 const styles = StyleSheet.create({
   root: {
     alignItems: 'center',
-    padding: 20,
+    padding: 30,
+    height: 500,
+    
   },
   title: {
     fontSize: 24,

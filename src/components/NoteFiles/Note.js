@@ -9,7 +9,7 @@ const Note = ({item, onPress}) => {
     
     <TouchableOpacity onPress={onPress} style = {styles.container}>
         <Text  style={styles.title} numberOfLines={2}>{title}</Text>
-        <Text style={styles.description} numberOfLines={8}>{description}</Text>
+        <Text style={styles.description} numberOfLines={3}>{description}</Text>
         <ImageBackground
                 source={{
                 uri: image,

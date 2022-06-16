@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
 export default SignUpScreen;
 */
 import React, {useState} from 'react';
-import {View, Text, StyleSheet, ScrollView, Alert} from 'react-native';
+import {View, Text, StyleSheet, ScrollView,TextInput, Alert} from 'react-native';
 import CustomInput from '../../components/CustomInputs';
 import CustomButton from '../../components/CustomButton';
 import SocialSignInButtons from '../../components/SocialSignInButtons';
@@ -122,10 +122,11 @@ const SignUpScreen = () => {
       <View style={styles.root}>
         <Text style={styles.title}>Create an account</Text>
 
-        <CustomInput
+        <CustomInput style={styles.text}
           name="name"
           control={control}
           placeholder="Name"
+          placeholderTextColor='white'
           rules={{
             required: 'Name is required',
             minLength: {
@@ -139,10 +140,11 @@ const SignUpScreen = () => {
           }}
         />
 
-        <CustomInput
+        <CustomInput style={styles.text}
           name="username"
           control={control}
           placeholder="Username"
+          placeholderTextColor='white'
           rules={{
             required: 'Username is required',
             minLength: {
@@ -155,18 +157,20 @@ const SignUpScreen = () => {
             },
           }}
         />
-        <CustomInput
+        <CustomInput style={styles.text}
           name="email"
           control={control}
+          placeholderTextColor='white'
           placeholder="Email"
           rules={{
             required: 'Email is required',
             pattern: {value: EMAIL_REGEX, message: 'Email is invalid'},
           }}
         />
-        <CustomInput
+        <CustomInput style={styles.text}
           name="password"
           control={control}
+          placeholderTextColor='white'
           placeholder="Password"
           secureTextEntry
           rules={{
@@ -177,9 +181,11 @@ const SignUpScreen = () => {
             },
           }}
         />
-        <CustomInput
+        <CustomInput style={styles.text}
+        
           name="password-repeat"
           control={control}
+          placeholderTextColor='white'
           placeholder="Repeat Password"
           secureTextEntry
           rules={{
@@ -192,7 +198,7 @@ const SignUpScreen = () => {
           onPress={handleSubmit(onRegisterPressed)}
         />
 
-        <Text style={styles.text}>
+        <Text style={styles.text }>
           By registering, you confirm that you accept our{' '}
           <Text style={styles.link} onPress={onTermsOfUsePressed}>
             Terms of Use
@@ -224,14 +230,21 @@ const styles = StyleSheet.create({
     resizeMode: 'stretch',
   },
   title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#051C60',
-    margin: 10,
+    fontSize: 22,
+    
+    color: 'yellow',
+    margin: 15,
   },
   text: {
-    color: 'gray',
-    marginVertical: 10,
+    width: 350,
+    paddingVertical: 5,
+    paddingHorizontal: 15,
+    borderRadius: 15, 
+    flex: 1,
+    color: 'white',
+    marginVertical: 5,
+    
+    
   },
   link: {
     color: '#FDB075',

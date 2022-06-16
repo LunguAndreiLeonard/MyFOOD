@@ -4,12 +4,13 @@ import colors from '../../misc/colors';
 import CustomButton from '../CustomButton';
 import ImagePicker from 'react-native-image-crop-picker';
 
+
 const NoteFiles = ({visible, onClose, onSubmit, note, isEdit}) => {
 
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [image, setImage] = useState('backgroundImage.png');
-    
+
 useEffect(() => {
     if(isEdit){
         setTitle(note.title);
@@ -20,6 +21,7 @@ useEffect(() => {
 [isEdit]);
 
     const handleOnChangeText = (text, valueFor) => {
+        const bullet = '\u2022';
         if(valueFor === 'title') setTitle(text);
         if(valueFor === 'description') setDescription(text);
         if(valueFor === 'image') setImage(text);
@@ -61,9 +63,11 @@ useEffect(() => {
             this.bs.current.snapTo(1);
         });
         }
+        
     const handleModalClose = () => {
         Keyboard.dismiss;
     };
+
 return (
     <>
     <StatusBar hidden/>

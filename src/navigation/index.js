@@ -14,6 +14,7 @@ import HomeScreen from '../screens/HomeScreen';
 import {Auth, Hub} from 'aws-amplify';
 import NoteDetails from '../components/NoteFiles/NoteDetails';
 import NoteProvider from '../context/NoteProvider';
+import More from '../screens/MoreReceipeScreen/more';
 
 const Stack = createNativeStackNavigator();
 
@@ -64,6 +65,7 @@ const Navigation = () => {
           <>
           <Stack.Screen name="Home" component={HomeScreen} />
           <Stack.Screen name='NoteDetails' component={NoteDetails} />
+          <Stack.Screen name='more' component={More} />
           </>
         ) : (
           <>

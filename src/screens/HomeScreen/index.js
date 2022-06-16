@@ -46,7 +46,10 @@ const HomeScreen = () => {
         Keyboard.dismiss;
     };
 
-    
+    const more = () => {
+        navigation.navigate('more');
+    };
+
     const openNote = (note) => {
         navigation.navigate('NoteDetails', {note});
     };
@@ -74,10 +77,15 @@ const HomeScreen = () => {
         </View>
         </TouchableWithoutFeedback>
 
-        <CustomButton
+        <CustomButton 
         text="ADD"
         onPress={() => setModalVisible(true)}
-        type="SECONDARY"
+        type="ADD"
+        />
+        <CustomButton 
+        text="More Receipe"
+        onPress={more}
+        type="MORE"
         />
         <Text
                 onPress={signOut}
@@ -87,7 +95,7 @@ const HomeScreen = () => {
                     color: 'red',
                     marginTop: 'auto',
                     marginVertical: 20,
-                    fontSize: 10,
+                    fontSize: 15,
                 }}>
                     Sign Out
                 </Text>

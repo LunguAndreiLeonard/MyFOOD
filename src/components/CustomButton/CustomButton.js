@@ -29,7 +29,11 @@ const styles = StyleSheet.create({
         backgroundColor: 'orange',
         width: 300,
     },
-    container_TERTIARY: {},
+    container_TERTIARY: {
+        borderColor:'#4e7e80',
+        borderWidth:2,
+        width: 300,
+    },
     text: {
         fontWeight: 'bold',
         color: 'white',
@@ -38,29 +42,88 @@ const styles = StyleSheet.create({
     container_SECONDARY: {
         backgroundColor: 'red',
         borderRadius: 180,
-        width: 60,
-        left: 330,
-        bottom: 20,
+        opacity: 0.5,
+        width: 380,
+        left: 10,
+        bottom: 60,
         position: 'absolute',
         
         
     },
+    container_RESEND: {
+        backgroundColor: 'red',
+        borderRadius: 20,
+        opacity: 0.5,
+        alignItems: 'center',
+        width: 300,
+        
+        bottom: 125,
+        position: 'absolute',
+
+    },
+
     text_SECONDARY: {},
     container_BACK: {
-        backgroundColor: 'red',
+        backgroundColor: '#180529',
+        borderWidth:1,
+        borderColor: 'red',
         borderRadius: 180,
-        width: 60,
-        left: 0,
+        width: 380,
+        left: 10,
+        flex:1,
         position: 'absolute',
-        bottom: 20,
+        bottom: 120,
+        
+    },
+    container_MORE: {
+        backgroundColor: '#180529',
+        borderWidth:1,
+        borderColor: 'red',
+        borderRadius: 180,
+        width: 380,
+        left: 10,
+        flex:1,
+        position: 'absolute',
+        bottom: 60,
+        
+    },
+    container_ADD: {
+        backgroundColor: '#180529',
+        borderWidth:1,
+        borderColor: 'yellow',
+        borderRadius: 180,
+        width: 380,
+        
+        left: 10,
+        flex:1,
+        position: 'absolute',
+        bottom: 118,
         
     },
     container_CAMERA: {
         backgroundColor: '#180529',
         borderRadius: 180,
-        width: 100,
-        left: 150,
-        bottom: 20,
+        width: 380,
+        flex: 1,
+        left:10,
+        alignItems: 'center',
+        alignContent: 'center',
+        bottom: 0,
+        borderColor: 'yellow',
+        borderWidth: 1,
+        position: 'absolute',
+        fontWeight: 'bold',
+        
+    },
+    container_SHARE: {
+        backgroundColor: '#180529',
+        borderRadius: 180,
+        width: 380,
+        flex: 1,
+        left:10,
+        alignItems: 'center',
+        alignContent: 'center',
+        bottom: 0,
         borderColor: 'yellow',
         borderWidth: 1,
         position: 'absolute',
@@ -68,6 +131,7 @@ const styles = StyleSheet.create({
         
         
     },
+
 
 
 

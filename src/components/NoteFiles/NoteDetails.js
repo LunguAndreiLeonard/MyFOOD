@@ -5,6 +5,7 @@ import { AsyncStorage } from '@aws-amplify/core';
 import NoteProvider, { useNotes } from '../../context/NoteProvider';
 import NoteFiles from './NoteFiles';
 import Note from './Note';
+import Share from 'react-native-share';
 
 
 
@@ -68,6 +69,8 @@ const NoteDetails = props => {
             })
             setNotes(newNotes);
             await AsyncStorage.setItem('notes', JSON.stringify(newNotes))
+        
+        
         }
         const handleOnClose = () => setShowNote(false)
 
@@ -75,6 +78,21 @@ const NoteDetails = props => {
             setIsEdit(true);
             setShowNote(true);
         }
+
+        const sharePoint =async (note) => {
+            const shareOptions = {
+                title: note.title,
+                message: note.description,
+            }
+
+            try {
+                const ShareResponse = await Share.open(shareOptions);
+
+            } catch(error) {
+                console.log('Error =>', error);
+            }
+        };
+
 
     return (
     <>
@@ -84,6 +102,7 @@ const NoteDetails = props => {
     : `Create At ${formatDate(note.time)}`}</Text>  
     <Text style={styles.title}>{note.title}</Text>
     <Text style={styles.description}>{note.description}</Text>
+    
     <ImageBackground
                 source={{
                 uri: note.image,
@@ -106,6 +125,11 @@ const NoteDetails = props => {
         onPress={displayDeleteAlert}
         type="SECONDARY"
         />
+    <CustomButton
+        text="Share receipe"
+        onPress={() => sharePoint(note)}
+        type="SHARE"
+        />
         <CustomButton
         text="EDIT"
         onPress={openEditNote}
@@ -126,7 +150,7 @@ const styles = StyleSheet.create({
     },
     title: {
         color: 'white',
-        fontSize: 30,
+        fontSize: 35,
         fontWeight: 'bold',
         padding: 30,
         textAlign: 'right',
@@ -139,8 +163,11 @@ const styles = StyleSheet.create({
     description: {
         color: 'white',
         fontSize: 20,
-        padding: 20,
-        
+        padding: 50,
+        letterSpacing: 3,
+        borderBottomColor: 'yellow',
+        alignContent: 'center',
+        textAlign: 'center',
         
     },
     time: {
