@@ -15,11 +15,13 @@ import {Auth, Hub} from 'aws-amplify';
 import NoteDetails from '../components/NoteFiles/NoteDetails';
 import NoteProvider from '../context/NoteProvider';
 import More from '../screens/MoreReceipeScreen/more';
+import Loader from '../components/Loader/Loader';
 
 const Stack = createNativeStackNavigator();
 
 const Navigation = () => {
   const [user, setUser] = useState(undefined);
+  
 
   const checkUser = async () => {
     try {
@@ -55,6 +57,7 @@ const Navigation = () => {
 
   
   return (
+    <>
     <NavigationContainer>
       <StatusBar hidden />
       <NoteProvider>
@@ -74,11 +77,13 @@ const Navigation = () => {
             <Stack.Screen name="ConfirmEmail" component={ConfirmEmailScreen} />
             <Stack.Screen name="ForgotPassword" component={ResetPasswordScreen}/>
             <Stack.Screen name="NewPassword" component={ConfirmPasswordScreen} />
+            
           </>
         )}
       </Stack.Navigator>
       </NoteProvider>
     </NavigationContainer>
+    </>
   );
 };
 

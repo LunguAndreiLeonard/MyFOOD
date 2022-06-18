@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, ScrollView ,Avatar, Alert, Button, Keyboard,Ima
 import React, {useState} from 'react'
 import CustomButton from '../CustomButton';
 import { AsyncStorage } from '@aws-amplify/core';
-import NoteProvider, { useNotes } from '../../context/NoteProvider';
+import { useNotes } from '../../context/NoteProvider';
 import NoteFiles from './NoteFiles';
 import Note from './Note';
 import Share from 'react-native-share';
@@ -47,12 +47,12 @@ const NoteDetails = props => {
         ],
         { cancelable: true });
 
-        
+    
 
         const handleUpdate = async (title, description,image, time) => {
-            await AsyncStorage.getItem('notes')
+            const result = await AsyncStorage.getItem('notes');
             let notes = [];
-            if(result !== null) notes =  JSON.parse(result)
+            if(result !== null) notes =  JSON.parse(result);
 
             const newNotes = notes.filter(n => {
                 if(n.id == note.id) {

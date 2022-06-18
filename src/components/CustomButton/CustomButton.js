@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         width: 300,
         
-        bottom: 125,
+        bottom: 425,
         position: 'absolute',
 
     },
@@ -100,16 +100,31 @@ const styles = StyleSheet.create({
         bottom: 118,
         
     },
+    container_IMAGE: {
+        backgroundColor: '#180529',
+        borderRadius: 180,
+        width: 180,
+        flex: 1,
+        left:200,
+        alignItems: 'center',
+        alignContent: 'center',
+        bottom: 0,
+        borderColor: 'yellow',
+        borderWidth: 1,
+        position: 'absolute',
+        fontWeight: 'bold',
+        
+    },
     container_CAMERA: {
         backgroundColor: '#180529',
         borderRadius: 180,
-        width: 380,
+        width: 180,
         flex: 1,
         left:10,
         alignItems: 'center',
         alignContent: 'center',
         bottom: 0,
-        borderColor: 'yellow',
+        borderColor: 'red',
         borderWidth: 1,
         position: 'absolute',
         fontWeight: 'bold',

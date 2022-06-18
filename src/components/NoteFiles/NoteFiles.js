@@ -21,7 +21,7 @@ useEffect(() => {
 [isEdit]);
 
     const handleOnChangeText = (text, valueFor) => {
-        const bullet = '\u2022';
+
         if(valueFor === 'title') setTitle(text);
         if(valueFor === 'description') setDescription(text);
         if(valueFor === 'image') setImage(text);
@@ -63,6 +63,18 @@ useEffect(() => {
             this.bs.current.snapTo(1);
         });
         }
+
+    const CameraSelector = () => {
+        ImagePicker.openCamera({
+            width: 300,
+            height: 400,
+            cropping: true,
+        }).then(image => {
+            console.log(image);
+            setImage(image.path);
+            this.bs.current.snapTo(1);
+        });
+    }
         
     const handleModalClose = () => {
         Keyboard.dismiss;
@@ -111,6 +123,11 @@ return (
         <CustomButton
             text="Add Image"
             onPress={ImageSelector}
+            type="IMAGE"
+        />
+        <CustomButton
+            text="Take Photo"
+            onPress={CameraSelector}
             type="CAMERA"
         />
         <CustomButton

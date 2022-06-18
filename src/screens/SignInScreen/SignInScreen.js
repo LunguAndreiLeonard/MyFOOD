@@ -15,13 +15,15 @@ import CustomButton from '../../components/CustomButton';
 import SocialSignInButtons from '../../components/SocialSignInButtons';
 import {useNavigation} from '@react-navigation/native';
 import {useForm, Controller} from 'react-hook-form';
-import {Auth} from 'aws-amplify';
+import {Auth, button} from 'aws-amplify';
 import colors from '../../misc/colors';
+import Loader from '../../components/Loader/Loader';
 
 const SignInScreen = () => {
   const {height} = useWindowDimensions();
   const navigation = useNavigation();
   const [loading, setLoading] = useState(false);
+
 
   const {
     control,
@@ -34,8 +36,10 @@ const SignInScreen = () => {
       return;
     }
 
+
     setLoading(true);
     try {
+      
       const response = await Auth.signIn(data.username, data.password);
       console.log(response);
     } catch (e) {
@@ -50,7 +54,15 @@ const SignInScreen = () => {
 
   const onSignUpPress = () => {
     navigation.navigate('SignUp');
+    
   };
+
+  
+
+      
+
+
+
 
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
@@ -88,9 +100,11 @@ const SignInScreen = () => {
           }}
         />
 
-        <CustomButton
+        <CustomButton 
           text={loading ? 'Loading...' : 'Sign In'}
           onPress={handleSubmit(onSignInPressed)}
+          
+          
         />
 
         <CustomButton

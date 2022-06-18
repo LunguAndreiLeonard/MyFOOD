@@ -9,14 +9,15 @@ import { AsyncStorage } from '@aws-amplify/core';
 import Note from '../../components/NoteFiles/Note';
 import {useNavigation} from '@react-navigation/core';
 import { useNotes } from '../../context/NoteProvider';
-import { BorderOutlined } from '@ant-design/icons';
-
+import NoteFound from '../../components/SearchBar/NoteFound';
 
 const HomeScreen = () => {
     const [greet, setGreet, index] = useState('Evening');
     const [modalVisible, setModalVisible] = useState(false)
     const navigation = useNavigation();
-    const {notes, setNotes} = useNotes();
+    const {notes, setNotes, findNotes} = useNotes();
+    const [searchQuery, setSearchQuery] = useState('');
+    const[resultNotFound, SetResultNotFound] = useState(false);
 
 
     const handleOnSubmit = async (title, description, image) => {
@@ -38,7 +39,7 @@ const HomeScreen = () => {
     }
 
     useEffect(() => {
-        //AsyncStorage.clear();
+       // AsyncStorage.clear();
         findGreet();
     }, []);
     
@@ -53,6 +54,32 @@ const HomeScreen = () => {
     const openNote = (note) => {
         navigation.navigate('NoteDetails', {note});
     };
+    
+    const handleOnSearchInput= async text => {
+        setSearchQuery(text);
+        if(!text.trim()) {
+            setSearchQuery('');
+            SetResultNotFound(false);
+            return await findNotes();
+        }
+
+        const filteredNotes = notes.filter(note => {
+            if(note.title.toLowerCase().includes(text.toLowerCase())){
+                return note;
+            }
+        })
+
+        if(filteredNotes.length) {
+            setNotes([...filteredNotes])
+        }else {
+            SetResultNotFound(true);
+        }
+    }
+    const handleOnClear = async () => {
+        setSearchQuery('');
+        setResultNotFound(false);
+        await findNotes();
+    };
 
     return (
         <>
@@ -62,10 +89,17 @@ const HomeScreen = () => {
         
         <View style={styles.container}>
             <Text style={styles.header}>{`Good ${greet}`}</Text>
-            <SearchBar containerStyle={{marginVertical: 15}} />
+            {notes.length ? (
+            <SearchBar value={searchQuery} onChangeText={handleOnSearchInput} containerStyle={{marginVertical: 15}} onClear={handleOnClear} />
+            ) : null }
+
+            {resultNotFound ? (<NoteFound /> )
+            : (
             <FlatList numColumns={2} columnWrapperStyle={{justifyContent: 'space-between', marginBottom: 20}} data={notes} keyExtractor={item => item.id.toString()}
             renderItem={({item}) =>  ( <Note onPress={() => openNote(item)} item={item}/> )}
             />
+            )}
+
             {!notes.length ? (
             <View style={[ StyleSheet.absoluteFillObject ,
             styles. emptyHeaderContainer]}>
